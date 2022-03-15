@@ -133,7 +133,7 @@ func (r *Reader) ReadMessage() (*Message, error) {
 
 	msg := new(Message)
 	if err := json.NewDecoder(cReader).Decode(&msg); err != nil {
-		return nil, fmt.Errorf("json.Unmarshal: %s", err)
+		return nil, fmt.Errorf("json.Unmarshal: %s...%s: %s", cBuf[:20], cBuf[len(cBuf)-20:], err)
 	}
 
 	return msg, nil
